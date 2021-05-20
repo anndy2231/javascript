@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<body>
+  아이템 : <input type="text" id="itemName"> <br>
+  가격: <input type="text" id="itemPrice"> <br>
+  <input type="button" value="입력" id="input">
+  <input type="button" value="돌아가기" id="back"><br>
+</body>
+<script>
+  $("#input").click(function () {
+    console.log($("#itemName").val(), $("#itemPrice").val());
+    $.ajax({
+      type: "post",
+      url: `/inputDB`,
+      data: {
+        itemName: $("#itemName").val(),
+        itemPrice: $("#itemPrice").val(),
+      },
+
+      // success: function (res) {
+      //   console.log(res);
+      //   if (res == "not ok") {
+      //     alert("입력실패");
+      //   } else if (res == 'ok') {
+      //     alert("입력성공");
+      //   } else if (res == "same name") {
+      //     alert("동일한 이름을 가진 아이템이 존재합니다.")
+      //   } else if (res == "same price") {
+      //     alert("동일한 가격을 가진 아이템이 존재합니다.")
+      //   } else if (res == "same name, same price") {
+      //     alert("동일한 이름, 가격을 가진 아이템이 존재합니다.")
+      //   } else if (res == "same name, same price2") {
+      //     alert("동일한 이름, 가격이 각각 존재합니다.(2개)")
+      //   }
+      // }
+  //   });
+  // });
+
+  
+      success: function (res) {
+        console.log(res);
+        if (res == "ok") {
+          alert("입력성공");
+          location.href = "/searchItem"
+        } else {
+          alert(res);
+        }
+      }
+    });
+  });
+  
+
+
+  $("#back").click(function () {
+    location.href = "/searchItem"
+  });
+
+</script>
+
+</html>

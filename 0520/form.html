@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<body>
+  가격 : <input type="text" id="price"> <br>
+  <input type="button" value="확인" id="calc">
+    <input type="button" value="입력페이지" id="goToInsertFrom"><br>
+</body>
+<script>
+  $("#calc").click(function() {
+  $.ajax({
+      type: "get",
+      url: `/getItem_db`,
+      data: {
+        price: $("#price").val()
+      },
+      success: function(res){
+        alert(res);
+        // console.log(res);
+      }
+    });
+  });
+
+  $("#goToInsertFrom").click(function() {
+    location.href = "/insertForm"
+  });
+
+</script>
+
+</html>
